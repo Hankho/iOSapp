@@ -58,6 +58,24 @@ class MainController: UIViewController {
         VersionAPIDAO.getVersion({ (obj) in
             DispatchQueue.main.async {
                 self.obj = obj;
+                if (obj.version != nil){
+                    if let ClientVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                        var ServerVersion = String (obj.version)
+                        if (ClientVersion != ServerVersion){
+                            let alertView = UIAlertController(title:"提示", message: "请更新版本", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "确定", style: .default, handler: { (alert) -> Void in
+                                if let checkURL = NSURL(string: "http://www.google.com") {  //路由為下載.ipa的位置
+                                    if UIApplication.shared.openURL(checkURL as URL){
+                                        
+                                    }
+                                }
+                            })
+                            alertView.addAction(action)
+                            self.present(alertView, animated: true, completion: nil)
+                            return
+                        }
+                    }
+                }
                 for num in obj.img
                 {
                     //var hh = "view\(holex)"

@@ -11,7 +11,7 @@ import ObjectMapper
 class ImageRep:Mappable {
     /**companyCode*/
     var result:String!
-    var version:String!
+    var version:Int!
     var img:[String]!
     init() {}
     
